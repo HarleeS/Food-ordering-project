@@ -4,6 +4,13 @@
  */
 package inf;
 
+
+import codes.DBConnect;
+import java.sql.ResultSet;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
+import java.sql.Connection;
+
 /**
  *
  * @author DELL
@@ -13,8 +20,30 @@ public class HomePage extends javax.swing.JFrame {
     /**
      * Creates new form HomePage
      */
+    Connection conn=null;
     public HomePage() {
+        conn=DBConnect.connect();
         initComponents();
+        if (Login.userNameDisplay.equals("Sign Up")){
+            logOutButton.setVisible(false);
+        }
+        else{
+            logOutButton.setVisible(true);
+        }
+    }
+    
+   
+    public void showUserToLogin(){
+        if (Login.userNameDisplay.equals("Sign Up")){
+            JOptionPane.showMessageDialog(null, "Please sign up to continue");
+        }
+        else{
+            OrderNowPage orderNow=new OrderNowPage();
+            orderNow.setVisible(true);
+            this.dispose();
+           
+        }
+      
     }
 
     /**
@@ -27,7 +56,7 @@ public class HomePage extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        logOutButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         orderNowButtonHeader = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -52,6 +81,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
         orderNowButtonFooter = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -60,16 +90,16 @@ public class HomePage extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setText("About Us");
-        jButton1.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
+        logOutButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/log out.jpeg"))); // NOI18N
+        logOutButton.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
         orderNowButtonHeader.setBorderPainted(false);
-        jButton1.setBorderPainted(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        logOutButton.setBorderPainted(false);
+        logOutButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                logOutButtonActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 70, -1));
+        jPanel2.add(logOutButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(940, 10, 40, 40));
 
         jLabel1.setFont(new java.awt.Font("Franklin Gothic Heavy", 1, 18)); // NOI18N
         jLabel1.setText("FOODIE");
@@ -189,14 +219,14 @@ public class HomePage extends javax.swing.JFrame {
         jButton7.setBackground(new java.awt.Color(0, 0, 0));
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jButton7.setForeground(new java.awt.Color(255, 255, 255));
-        jButton7.setText("Sign Up");
+        jButton7.setText(Login.userNameDisplay);
         jButton7.setBorder(null);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
-        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 10, 90, 40));
+        jPanel2.add(jButton7, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 10, 210, 40));
 
         orderNowButtonFooter.setBackground(new java.awt.Color(0, 0, 0));
         orderNowButtonFooter.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -210,36 +240,79 @@ public class HomePage extends javax.swing.JFrame {
         });
         jPanel2.add(orderNowButtonFooter, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 510, 90, 40));
 
+        jButton2.setText("About Us");
+        jButton2.setBorder(javax.swing.BorderFactory.createEtchedBorder(java.awt.Color.white, java.awt.Color.white));
+        jButton2.setBorderPainted(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 20, 70, -1));
+
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1010, 650));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        NewJFrame aboutUs=new NewJFrame();
-        aboutUs.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void logOutButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logOutButtonActionPerformed
+        if (Login.userNameDisplay.equals("Sign Up")){
+            JOptionPane.showMessageDialog(null, "Please sign up to Log Out");
+            
+        }
+        else {
+            Login.userNameDisplay="Sign Up";
+            HomePage home=new HomePage();
+            home.setVisible(true);
+            this.dispose();
+        }
+    }//GEN-LAST:event_logOutButtonActionPerformed
 
     private void orderNowButtonHeaderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderNowButtonHeaderActionPerformed
-        OrderNowPage orderNow=new OrderNowPage();
-        orderNow.setVisible(true);
-        this.dispose();
+        showUserToLogin();
+        
         
     }//GEN-LAST:event_orderNowButtonHeaderActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        NewJFrame3 myOrders=new NewJFrame3();
-        myOrders.setVisible(true);
-        this.dispose();
+        
+        if (Login.userNameDisplay.equals("Sign Up")){
+            JOptionPane.showMessageDialog(null, "Please sign up to continue");
+        }
+        else {
+            try{
+            // Query to retrieve data
+                String query = "SELECT distinct date FROM userproducts where userName='"+Login.userNameDisplay+"'";
+
+                // Create statement and execute query
+                Statement statement = conn.createStatement();
+                ResultSet resultSet = statement.executeQuery(query);
+
+                if (resultSet.next()){
+                    MyOrders myOrders=new MyOrders();
+                    myOrders.setVisible(true);
+                    this.dispose();
+                }
+                else {
+                    JOptionPane.showMessageDialog(null, "Please Order at least one item");
+                }
+            
+            }
+            
+            catch(Exception e){
+                JOptionPane.showMessageDialog(null, e);
+            } 
+            
+            
+        }
         
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void orderNowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderNowButtonActionPerformed
-        OrderNowPage orderNow=new OrderNowPage();
-        orderNow.setVisible(true);
-        this.dispose();
+        showUserToLogin();
+        
+        
     }//GEN-LAST:event_orderNowButtonActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -249,14 +322,22 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
+        Login login=new Login();
+        login.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void orderNowButtonFooterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderNowButtonFooterActionPerformed
-        OrderNowPage orderNow=new OrderNowPage();
-        orderNow.setVisible(true);
-        this.dispose();
+        showUserToLogin();
+        
+        
     }//GEN-LAST:event_orderNowButtonFooterActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        NewJFrame feedback=new NewJFrame();
+        feedback.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -295,7 +376,7 @@ public class HomePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.Box.Filler filler1;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
@@ -317,6 +398,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton logOutButton;
     private javax.swing.JButton orderNowButton;
     private javax.swing.JButton orderNowButtonFooter;
     private javax.swing.JButton orderNowButtonHeader;
