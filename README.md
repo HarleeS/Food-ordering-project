@@ -12,7 +12,7 @@ The project's primary objective is to streamline the process of food ordering, f
 
 - **KDHV Senarathna** (https://github.com/HarleeS)
 - **KGOG Disanayaka** (https://github.com/oshini2002)
-- **H.N.Methsarani** 
+- **H.N.Methsarani** (https://github.com/Navo2001)
 - **K.K.S.Priyanath** (https://github.com/supunpriyanath333)
 - **HMRM Perera** (https://github.com/rasunM)
 
