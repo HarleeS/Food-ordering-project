@@ -7,9 +7,9 @@ The project's primary objective is to streamline the process of food ordering, f
 ## Contributors
 
 - **KDHV Senarathna** (https://github.com/HarleeS)
-- **KGOG Disanayaka** (https://img.shields.io/github/followers/username?style=social)
-- **H.N.Methsarani** (https://img.shields.io/github/followers/username?style=social)
-- **K.K.S.Priyanath** (https://img.shields.io/github/followers/username?style=social)
+- **KGOG Disanayaka** 
+- **H.N.Methsarani** 
+- **K.K.S.Priyanath** (https://github.com/supunpriyanath333)
 - **HMRM Perera** (https://github.com/rasunM)
 
 ---
